@@ -9,7 +9,7 @@ Audio in Discord is a fairly complicated subject, but thankfully, DSharpPlus mak
 Using the procedures in the first bot article, install a NuGet package called `DSharpPlus.VoiceNext`.
 
 Now you need to enable VoiceNext module on your DiscordClient. Add a new field to your bot's `Program` class: 
-`static VoiceNextClient voice;`
+`static VoiceNextExtension voice;`
 
 Visual Studio will complain, you also need to add `using DSharpPlus.VoiceNext;` to your usings in both the command module 
 and the bot class.
@@ -69,7 +69,7 @@ public async Task Join(CommandContext ctx)
 [Command("leave")]
 public async Task Leave(CommandContext ctx)
 {
-	var vnext = ctx.Client.GetVoiceNextClient();
+	var vnext = ctx.Client.GetVoiceNext();
 
 	var vnc = vnext.GetConnection(ctx.Guild);
 	if (vnc == null)
@@ -118,7 +118,7 @@ this:
 [Command("play")]
 public async Task Play(CommandContext ctx, [RemainingText] string file)
 {
-	var vnext = ctx.Client.GetVoiceNextClient();
+	var vnext = ctx.Client.GetVoiceNext();
 
 	var vnc = vnext.GetConnection(ctx.Guild);
 	if (vnc == null)
